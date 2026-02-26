@@ -2,6 +2,14 @@ from cellpose import models
 from pathlib import Path
 import numpy as np
 from tifffile import imread, imwrite
+import torch
+
+check = torch.cuda.is_available()
+
+if not check:
+    print('gpu not available')
+    print('ending')
+    raise Exception
 
 model = models.CellposeModel(model_type="bact_phase_cp3", gpu=True)
 gnome = Path("/users/ach22jc/test.tif")
