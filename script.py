@@ -11,8 +11,10 @@ if not check:
     print('ending')
     raise Exception
 
-model = models.CellposeModel(model_type="bact_phase_cp3", gpu=True)
-model_diam_mean = models.CellposeModel(model_type="bact_phase_cp3", gpu=True, diam_mean=20)
+dev = torch.cuda.device(0)
+
+model = models.CellposeModel(model_type="bact_phase_cp3", gpu=True, device=dev)
+model_diam_mean = models.CellposeModel(model_type="bact_phase_cp3", gpu=True, diam_mean=20, device=dev)
 gnome = Path("/users/ach22jc/test.tif")
 
 # paramaters to play with later
