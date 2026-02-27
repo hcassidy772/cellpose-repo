@@ -13,19 +13,21 @@ if not check:
 
 # dev = torch.cuda.device(0)
 
-model = models.CellposeModel(model_type="bact_phase_cp3", gpu=True)
+# 4.0
+path = '/users/ach22jc/.cellpose/models/bact_phase_cp3'
+model = models.CellposeModel(pretrained_model=path, gpu=True)
+# model = models.CellposeModel(model_type="bact_phase_cp3", gpu=True)
+
 gnome = Path("/users/ach22jc/test.tif")
+tif = imread(gnome)
+tif = np.moveaxis(tif, 1, -1)
+tif = np.max(tif, axis=3)
 
 # paramaters to play with later
 # anisotropy = 488 / 19 # this works bad
 # diameter = 20  # used to resample the image? wild try it out
 
-tif = imread(gnome)
-
-# merge channels (max not mean)
 print(tif.shape)
-tif = np.moveaxis(tif, 1, -1)
-tif = np.max(tif, axis=3)
 print(tif.shape)
 
 flow = 5
