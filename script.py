@@ -32,8 +32,9 @@ print(tif.shape)
 
 flow = 5
 for i in range(11):
+    # flow3D_smooth isnt implemented on 3.0, check more versions
     mask, two, three = model.eval(
-        tif, do_3D=True, z_axis=0, cellprob_threshold=-6, flow3D_smooth=5, flow_threshold=i
+        tif, do_3D=True, z_axis=0, cellprob_threshold=-6, flow_threshold=i
     )
     print(str(i) + " done")
 
