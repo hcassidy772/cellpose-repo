@@ -33,7 +33,7 @@ print(tif.shape)
 flow = 5
 for i in range(-6, 7):
     mask, two, three = model.eval(
-        tif, do_3D=True, z_axis=0, flow3D_smooth=flow, cellprob_threshold=i
+        tif, do_3D=True, z_axis=0, cellprob_threshold=i
     )
     print(str(i) + " done")
 
