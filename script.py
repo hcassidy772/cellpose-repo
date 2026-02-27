@@ -13,7 +13,7 @@ if not check:
 
 # dev = torch.cuda.device(0)
 
-model = models.CellposeModel(model_type="bact_phase_cp3", gpu=True, device=dev)
+model = models.CellposeModel(model_type="bact_phase_cp3", gpu=True)
 gnome = Path("/users/ach22jc/test.tif")
 
 # paramaters to play with later
