@@ -31,12 +31,12 @@ print(tif.shape)
 print(tif.shape)
 
 flow = 5
-for i in range(-6, 7):
+for i in range(11):
     mask, two, three = model.eval(
-        tif, do_3D=True, z_axis=0, cellprob_threshold=i
+        tif, do_3D=True, z_axis=0, cellprob_threshold=-6, flow3D_smooth=5, flow_threshold=i
     )
     print(str(i) + " done")
 
-    outstr = "/users/ach22jc/test-outputs/out-standard" + str(i) + ".tif"
+    outstr = "/users/ach22jc/test-outputs/out-flow" + str(i) + ".tif"
     imwrite(outstr, mask)
 
