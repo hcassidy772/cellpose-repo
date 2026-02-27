@@ -11,10 +11,9 @@ if not check:
     print('ending')
     raise Exception
 
-dev = torch.cuda.device(0)
+# dev = torch.cuda.device(0)
 
 model = models.CellposeModel(model_type="bact_phase_cp3", gpu=True, device=dev)
-model_diam_mean = models.CellposeModel(model_type="bact_phase_cp3", gpu=True, diam_mean=20, device=dev)
 gnome = Path("/users/ach22jc/test.tif")
 
 # paramaters to play with later
@@ -29,19 +28,13 @@ tif = np.moveaxis(tif, 1, -1)
 tif = np.max(tif, axis=3)
 print(tif.shape)
 
-for i in range(10):
-    flow = 2 * i
+flow = 5
+for i in range(-6, 7):
     mask, two, three = model.eval(
-        tif, do_3D=True, z_axis=0, flow3D_smooth=flow
+        tif, do_3D=True, z_axis=0, flow3D_smooth=flow, cellprob_threshold=i
     )
     print(str(i) + " done")
 
     outstr = "/users/ach22jc/test-outputs/out-standard" + str(i) + ".tif"
     imwrite(outstr, mask)
 
-    mask, two, three = model_diam_mean.eval(
-        tif, do_3D=True, z_axis=0, flow3D_smooth=flow
-    )
-    outstr = "/users/ach22jc/test-outputs/out-diam-mean" + str(i) + ".tif"
-    imwrite(outstr, mask)
-    print(str(i) + " done")
