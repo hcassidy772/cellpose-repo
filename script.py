@@ -28,13 +28,12 @@ tif = np.max(tif, axis=3)
 # diameter = 20  # used to resample the image? wild try it out
 
 print(tif.shape)
-print(tif.shape)
 
 flow = 5
-for i in range(11):
+for i in range(20):
     # flow3D_smooth isnt implemented on 3.0, check more versions
     mask, two, three = model.eval(
-        tif, do_3D=True, z_axis=0, cellprob_threshold=-6, flow_threshold=i
+        tif, do_3D=True, z_axis=0, cellprob_threshold=-6, flow_threshold=10, min_size=i
     )
     print(str(i) + " done")
 
