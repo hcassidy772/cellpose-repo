@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=cp4
+#SBATCH --job-name=cp4_long
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
