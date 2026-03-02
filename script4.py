@@ -31,7 +31,7 @@ flow3D_smooth = 2
 print(tif.shape)
 
 print('running diam')
-for i in range(20):
+for i in range(1,21):  # dont run diam 0 you spanner
     diam = 2 * i
     mask, two, three = model.eval(
         tif,
