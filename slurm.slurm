@@ -8,7 +8,7 @@
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=job.out
 #SBATCH --mem=251G
-#SBATCH --cpus-per-task=2
+#SBATCH --cpus-per-task=4
 
 export py=/mnt/parscratch/users/ach22jc/anaconda/.envs/sa_env_fresh/bin/python
 export SLURM_EXPORT_ENV=ALL
