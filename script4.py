@@ -18,10 +18,10 @@ if not check:
 model = models.CellposeModel(gpu=True)
 # model = models.CellposeModel(model_type="bact_phase_cp3", gpu=True)
 
-gnome = Path("/users/ach22jc/test.tif")
+gnome = Path("/users/ach22jc/max.tif")
 tif = imread(gnome)
-tif = np.moveaxis(tif, 1, -1)
-tif = np.max(tif, axis=3)
+# tif = np.moveaxis(tif, 1, -1)
+# tif = np.max(tif, axis=3)
 
 # paramaters to play with later
 # anisotropy = 488 / 19 # this works bad
