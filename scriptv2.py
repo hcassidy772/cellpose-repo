@@ -1,6 +1,6 @@
 from cellpose import models
 from pathlib import Path
-# import numpy as np
+import numpy as np
 from tifffile import imread, imwrite
 import torch
 
@@ -18,6 +18,7 @@ gnome = Path("/users/ach22jc/v2/v2/")
 flow3D_smooth = 2
 for i in gnome.glob('*.tif'):
     tif = imread(i)
+    tif = np.max(tif, axis=1)
 
     mask, two, three = model.eval(
         tif,

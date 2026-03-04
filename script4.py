@@ -15,6 +15,7 @@ if not check:
 model = models.CellposeModel(gpu=True)
 
 gnome = Path("/users/ach22jc/v2/v2/")
+
 tif = imread(gnome)
 
 # base values
