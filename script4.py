@@ -14,9 +14,14 @@ if not check:
 # 4.0
 model = models.CellposeModel(gpu=True)
 
-gnome = Path("/users/ach22jc/test-images/")
-tifs = gnome.glob("*.tif")
+# gnome = Path("/users/ach22jc/test-images/")
+# tifs = gnome.glob("*.tif")
 
+tifs = list(Path('/users/ach22jc/atto/').glob('*.tif'))
+tifs = tifs + list(Path('/users/ach22jc/hnt/').glob('*.tif'))
+rf470 = tifs + list(Path('/users/ach22jc/rf470/').glob('*.tif'))
+shh = tifs + list(Path('/users/ach22jc/shh/').glob('*.tif'))
+shl = tifs + list(Path('/users/ach22jc/shl/').glob('*.tif'))
 
 # base values
 # diameter = 20
@@ -35,7 +40,7 @@ for i in tifs:
     mask, two, three = model.eval(
         tif, do_3D=True, z_axis=0, flow3D_smooth=flow3D_smooth
     )
-    outstr = "/users/ach22jc/test-outputs/cp4/trial/" + (i.name)
+    outstr = "/users/ach22jc/test-outputs/cp4/bulk/" + (i.name)
     imwrite(outstr, mask)
 
 print("tada")
