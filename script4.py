@@ -26,11 +26,11 @@ tifs = gnome.glob("*.tif")
 flow3D_smooth = 2
 
 
-print("running diam")
 for i in tifs:
     tif = imread(i)
+    print(i.name)
     print(tif.shape)
-    if i.ndim == 4:
+    if tif.ndim == 4:
         tif = np.max(tif, axis=1)
     mask, two, three = model.eval(
         tif, do_3D=True, z_axis=0, flow3D_smooth=flow3D_smooth
