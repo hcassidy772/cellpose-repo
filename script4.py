@@ -17,11 +17,11 @@ model = models.CellposeModel(gpu=True)
 # gnome = Path("/users/ach22jc/test-images/")
 # tifs = gnome.glob("*.tif")
 
-tifs = list(Path('/users/ach22jc/atto/').glob('*.tif'))
-tifs = tifs + list(Path('/users/ach22jc/hnt/').glob('*.tif'))
-rf470 = tifs + list(Path('/users/ach22jc/rf470/').glob('*.tif'))
-shh = tifs + list(Path('/users/ach22jc/shh/').glob('*.tif'))
-shl = tifs + list(Path('/users/ach22jc/shl/').glob('*.tif'))
+# tifs = list(Path('/users/ach22jc/atto/').glob('*.tif'))
+tifs = list(Path('/users/ach22jc/hnt/').glob('*.tif'))
+# rf470 = tifs + list(Path('/users/ach22jc/rf470/').glob('*.tif'))
+# shh = tifs + list(Path('/users/ach22jc/shh/').glob('*.tif'))
+# shl = tifs + list(Path('/users/ach22jc/shl/').glob('*.tif'))
 
 # base values
 # diameter = 20
