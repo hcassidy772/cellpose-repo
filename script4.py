@@ -15,7 +15,7 @@ if not check:
 model = models.CellposeModel(gpu=True)
 
 gnome = Path("/users/ach22jc/test-images/")
-tifs = gnome.glob('*.tif')
+tifs = gnome.glob("*.tif")
 
 
 # base values
@@ -26,19 +26,16 @@ tifs = gnome.glob('*.tif')
 flow3D_smooth = 2
 
 
-print('running diam')
+print("running diam")
 for i in tifs:
     tif = imread(i)
     print(tif.shape)
     if i.ndim == 4:
         tif = np.max(tif, axis=1)
     mask, two, three = model.eval(
-        tif,
-        do_3D=True,
-        z_axis=0,
-        flow3D_smooth=flow3D_smooth
+        tif, do_3D=True, z_axis=0, flow3D_smooth=flow3D_smooth
     )
     outstr = "/users/ach22jc/test-outputs/cp4/trial/" + (i.name)
     imwrite(outstr, mask)
 
-print('tada')
+print("tada")

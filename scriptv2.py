@@ -25,7 +25,7 @@ for i in gnome.glob('*.tif'):
         do_3D=True,
         z_axis=0,
         flow3D_smooth=flow3D_smooth
-        )
+    )
     outstr = "/users/ach22jc/test-outputs/cp4/v2/" + (i.name[27:29]) + '-cellposed' + ".tif"
     imwrite(outstr, mask)
 

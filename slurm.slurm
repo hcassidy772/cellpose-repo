@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=cp4_v2
+#SBATCH --job-name=cp4trial
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
