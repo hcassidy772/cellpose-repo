@@ -27,7 +27,7 @@ tifs = list(Path('/users/ach22jc/hnt/').glob('*.tif'))
 # diameter = 20
 # min_size = 12
 # cellprob_threshold = 5
-# flow_threshold = 0.8
+flow_threshold = 0.1
 flow3D_smooth = 2
 
 
