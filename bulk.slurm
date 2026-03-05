@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=ft_test
+#SBATCH --job-name=cp4_bulk
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
