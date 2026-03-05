@@ -40,7 +40,7 @@ for i in range(11):
         tif, do_3D=True, z_axis=0, flow3D_smooth=flow3D_smooth,
         flow_threshold=(i / 10)
     )
-    outstr = "/users/ach22jc/test-outputs/cp4/hnt/ft/" + (i) + '.tif'
+    outstr = "/users/ach22jc/test-outputs/cp4/hnt/ft/" + (str(i)) + '.tif'
     imwrite(outstr, mask)
 
 
