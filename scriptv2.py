@@ -22,7 +22,8 @@ flow3D_smooth = 2
 
 for i in range(11):
     tif = imread(i)
-    tif = np.max(tif, axis=1)
+    if tif.ndim == 4:
+        tif = np.max(tif, axis=1)
 
     mask, two, three = model.eval(
         tif,
