@@ -3,8 +3,11 @@ from pathlib import Path
 import numpy as np
 from tifffile import imread, imwrite
 import torch
+import logging
 
 check = torch.cuda.is_available()
+
+logging.basicConfig(filename='cp.log', level=logging.INFO)
 
 if not check:
     print('gpu not available')
