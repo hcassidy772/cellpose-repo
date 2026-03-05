@@ -14,9 +14,10 @@ if not check:
 # 4.0
 model = models.CellposeModel(gpu=True)
 
-gnome = Path("/users/ach22jc/v2/v2/")
+gnome = Path("/users/ach22jc/hnt.tif/")
 flow3D_smooth = 2
-for i in gnome.glob('*.tif'):
+
+for i in range(11):
     tif = imread(i)
     tif = np.max(tif, axis=1)
 
@@ -24,9 +25,12 @@ for i in gnome.glob('*.tif'):
         tif,
         do_3D=True,
         z_axis=0,
-        flow3D_smooth=flow3D_smooth
+        flow3D_smooth=flow3D_smooth,
+        flow_threshold=(i / 10)
+
     )
-    outstr = "/users/ach22jc/test-outputs/cp4/v2/" + (i.name[27:29]) + '-cellposed' + ".tif"
+    # outstr = "/users/ach22jc/test-outputs/cp4/v2/" + (i.name[27:29]) + '-cellposed' + ".tif"
+    outstr = "/users/ach22jc/test-outputs/cp4/hnt/ft/" + i + ".tif"
     imwrite(outstr, mask)
 
 
