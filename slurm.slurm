@@ -21,4 +21,4 @@ source activate sa_env_fresh
 
 nvidia-smi --query-gpu=index,timestamp,utilization.gpu,memory.total,memory.used,memory.free --format=csv -l 2 > gpu_stats_${SLURM_JOB_ID}.log &
 
-srun $py /users/ach22jc/cellpose-repo/scriptv2.py
+srun $py /users/ach22jc/cellpose-repo/script_param_testing
