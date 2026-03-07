@@ -7,7 +7,7 @@ import logging
 
 check = torch.cuda.is_available()
 
-logging.basicConfig(filename="ms_run.log", level=logging.INFO)
+logging.basicConfig(filename="param.log", level=logging.INFO)
 
 if not check:
     print("gpu not available")
