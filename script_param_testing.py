@@ -59,7 +59,7 @@ for i in range(10):
         tif, do_3D=True, z_axis=0,
         flow3D_smooth=i
     )
-    outstr = "/users/ach22jc/test-outputs/cp4/rf470/f3d/" + (i.name)
+    outstr = "/users/ach22jc/test-outputs/cp4/rf470/f3d/" + str(i) + ".tif"
     imwrite(outstr, mask)
 
 print("tada")
