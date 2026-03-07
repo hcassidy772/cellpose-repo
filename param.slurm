@@ -1,13 +1,13 @@
 #!/bin/bash
 
-#SBATCH --job-name=ms_test
+#SBATCH --job-name=rf470_pa
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mail-user=hccassidy1@sheffield.ac.uk
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=job.out
-#SBATCH --mem=32G
+#SBATCH --mem=16G
 
 export py=/mnt/parscratch/users/ach22jc/anaconda/.envs/sa_env_fresh/bin/python
 export SLURM_EXPORT_ENV=ALL
