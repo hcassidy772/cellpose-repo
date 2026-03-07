@@ -41,15 +41,15 @@ def vol(diam):
 
 # ========== for loop ==========
 
-for i in range(10, 30):
-    # if tif.ndim == 4:
-    #     tif = np.max(tif, axis=1)
-    mask, two, three = model.eval(
-        tif, do_3D=True, z_axis=0, flow3D_smooth=flow3D_smooth,
-        diam=i
-    )
-    outstr = "/users/ach22jc/test-outputs/cp4/rf470/diam/" + (str(i)) + '.tif'
-    imwrite(outstr, mask)
+# for i in range(10, 30):
+#     # if tif.ndim == 4:
+#     #     tif = np.max(tif, axis=1)
+#     mask, two, three = model.eval(
+#         tif, do_3D=True, z_axis=0, flow3D_smooth=flow3D_smooth,
+#         diam=i
+#     )
+#     outstr = "/users/ach22jc/test-outputs/cp4/rf470/diam/" + (str(i)) + '.tif'
+#     imwrite(outstr, mask)
 
 
 for i in range(10):
