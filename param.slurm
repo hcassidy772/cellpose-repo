@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=rf470_pa
+#SBATCH --job-name=param_sh
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1

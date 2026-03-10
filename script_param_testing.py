@@ -1,6 +1,6 @@
 from cellpose import models
 # from pathlib import Path
-# import numpy as np
+import numpy as np
 from tifffile import imread, imwrite
 import torch
 import logging
@@ -45,6 +45,20 @@ def vol(diam):
     return int((4 / 3) * (3.14) * ((diam / 2) ** 3))  # eq for sphere vol
 
 
+def eval(tif, model=model, f3d=0, min_diam=0):
+    mask, two, three = model.eval(
+        tif, do_3D=True, z_axis=0,
+        flow3D_smooth=f3d,
+        min_size=vol(min_diam)
+    )
+    return mask
+
+
+def merge(tif):
+    if tif.ndim == 4:
+        tif = np.max(tif, axis=1)
+    return tif
+
 # ========== for loop ==========
 
 # for i in range(10, 30):
@@ -59,13 +73,9 @@ def vol(diam):
 
 
 for i in tifs:
-    # if tif.ndim == 4:
-    #     tif = np.max(tif, axis=1)
-    mask, two, three = model.eval(
-        i, do_3D=True, z_axis=0,
-        flow3D_smooth=4,
-        min_size=vol(min_diam)
-    )
+    merge(i)
+    mask = eval(i, f3d=4, min_diam=min_diam)
+
     outstr = "/users/ach22jc/test-outputs/cp4/param/" + str(i) + ".tif"
     imwrite(outstr, mask)
 
