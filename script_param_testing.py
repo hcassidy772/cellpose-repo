@@ -64,7 +64,7 @@ for i in tifs:
     mask, two, three = model.eval(
         i, do_3D=True, z_axis=0,
         flow3D_smooth=4,
-        min_diam=vol(min_diam)
+        min_size=vol(min_diam)
     )
     outstr = "/users/ach22jc/test-outputs/cp4/param/" + str(i) + ".tif"
     imwrite(outstr, mask)
