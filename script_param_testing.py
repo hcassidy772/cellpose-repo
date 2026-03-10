@@ -72,9 +72,10 @@ def merge(tif):
 #     imwrite(outstr, mask)
 
 
-for i in tifs:
-    merge(i)
-    mask = eval(i, f3d=4, min_diam=min_diam)
+for i in range(len(tifs)):
+    tif = tifs[i]
+    merge(tif)
+    mask = eval(tif, f3d=4, min_diam=min_diam)
 
     outstr = "/users/ach22jc/test-outputs/cp4/param/" + str(i) + ".tif"
     imwrite(outstr, mask)
