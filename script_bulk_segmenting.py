@@ -9,6 +9,8 @@ check = torch.cuda.is_available()
 
 logging.basicConfig(filename="bulk.log", level=logging.INFO)
 
+print("bulk segmenting")
+
 if not check:
     print("gpu not available")
     print("ending")

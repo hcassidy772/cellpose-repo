@@ -9,6 +9,8 @@ check = torch.cuda.is_available()
 
 logging.basicConfig(filename="param.log", level=logging.INFO)
 
+print("param segmenting")
+
 if not check:
     print("gpu not available")
     print("ending")
