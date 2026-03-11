@@ -21,8 +21,8 @@ model = models.CellposeModel(gpu=True)
 
 # gnome = Path("/users/ach22jc/hnt.tif/")
 
-# tifs = list(Path('/users/ach22jc/atto/').glob('*.tif'))
-tifs = list(Path("/users/ach22jc/rf470/").glob("*.tif"))
+tifs = list(Path('/users/ach22jc/atto/small').glob('*.tif'))
+# tifs = list(Path("/users/ach22jc/rf470/").glob("*.tif"))
 # rf470 = tifs + list(Path('/users/ach22jc/rf470/').glob('*.tif'))
 # shh = tifs + list(Path('/users/ach22jc/shh/').glob('*.tif'))
 # shl = tifs + list(Path('/users/ach22jc/shl/').glob('*.tif'))
@@ -32,20 +32,40 @@ tifs = list(Path("/users/ach22jc/rf470/").glob("*.tif"))
 # min_size = 12
 # cellprob_threshold = 5
 # flow_threshold = 0.1
-flow3D_smooth = 4
+flow3D_smooth = 2
+min_diam = 10
+# ========== cellpose setup ==========
+
+
+def vol(diam):
+    return int((4 / 3) * (3.14) * ((diam / 2) ** 3))  # eq for sphere vol
+
+
+def eval(tif, model=model, f3d=0, min_diam=0):
+    mask, two, three = model.eval(
+        tif, do_3D=True, z_axis=0,
+        flow3D_smooth=f3d,
+        min_size=vol(min_diam)
+    )
+    return mask
+
+
+def merge(tif):
+    if tif.ndim == 4:
+        tif = np.max(tif, axis=1)
+    return tif
+
 
 # ========== for loop ==========
 for i in tifs:
     tif = imread(i)
 
-    if tif.ndim == 4:
-        tif = np.max(tif, axis=1)
+    tif = merge(tif)
 
-    mask, two, three = model.eval(
-        tif, do_3D=True, z_axis=0, flow3D_smooth=flow3D_smooth
-    )
+    mask = eval(tif, f3d=2, min_diam=10)
+
     # outstr = "/users/ach22jc/test-outputs/cp4/v2/" + (i.name[27:29]) + '-cellposed' + ".tif"
-    outstr = "/users/ach22jc/test-outputs/cp4/rf470/f3d/" + i.name
+    outstr = "/users/ach22jc/test-outputs/cp4/atto/small/" + i.name
     imwrite(outstr, mask)
 
 print("tada")
