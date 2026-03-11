@@ -1,5 +1,5 @@
 from cellpose import models
-# from pathlib import Path
+from pathlib import Path
 import numpy as np
 from tifffile import imread, imwrite
 import torch
@@ -21,12 +21,12 @@ model = models.CellposeModel(gpu=True)
 
 tifs = []
 # gnome = Path("/users/ach22jc/test-images/")
-# gnome = Path("/users/ach22jc/rf470.tif")
-# tif = imread(gnome)
-tifs.append(imread('/users/ach22jc/atto-l.tif')) # 25
-tifs.append(imread('/users/ach22jc/atto-s.tif')) # 15
-tifs.append(imread('/users/ach22jc/shh.tif')) # 25-30
-tifs.append(imread('/users/ach22jc/shh.tif')) # 25-30
+gnome = Path("/users/ach22jc/atto-l.tif")
+tif = imread(gnome)
+# tifs.append(imread('/users/ach22jc/atto-l.tif')) # 25
+# tifs.append(imread('/users/ach22jc/atto-s.tif')) # 15
+# tifs.append(imread('/users/ach22jc/shh.tif')) # 25-30
+# tifs.append(imread('/users/ach22jc/shh.tif')) # 25-30
 # shh = imread('/users/ach22jc/shl.tif')
 # tifs = gnome.glob("*.tif")
 
@@ -61,23 +61,24 @@ def merge(tif):
 
 # ========== for loop ==========
 
-# for i in range(10, 30):
-#     # if tif.ndim == 4:
-#     #     tif = np.max(tif, axis=1)
-#     mask, two, three = model.eval(
-#         tif, do_3D=True, z_axis=0, flow3D_smooth=flow3D_smooth,
-#         diam=i
-#     )
-#     outstr = "/users/ach22jc/test-outputs/cp4/rf470/diam/" + (str(i)) + '.tif'
-#     imwrite(outstr, mask)
 
+for i in range(11):
 
-for i in range(len(tifs)):
-    tif = tifs[i]
-    merge(tif)
-    mask = eval(tif, f3d=4, min_diam=min_diam)
+    d = (10 + (2 * i))
 
-    outstr = "/users/ach22jc/test-outputs/cp4/param/" + str(i) + ".tif"
+    tif = merge(tif)
+
+    mask = eval(tif, f3d=5, min_diam=d)
+    outstr = "/users/ach22jc/test-outputs/cp4/atto/large/diam" + (str(i)) + '.tif'
     imwrite(outstr, mask)
+
+
+# for i in range(len(tifs)):
+#     tif = tifs[i]
+#     merge(tif)
+#     mask = eval(tif, f3d=4, min_diam=min_diam)
+#
+#     outstr = "/users/ach22jc/test-outputs/cp4/param/" + str(i) + ".tif"
+#     imwrite(outstr, mask)
 
 print("tada")

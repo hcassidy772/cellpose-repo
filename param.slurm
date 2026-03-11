@@ -7,7 +7,7 @@
 #SBATCH --mail-user=hccassidy1@sheffield.ac.uk
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=job.out
-#SBATCH --mem=16G
+#SBATCH --mem=8G
 
 export py=/mnt/parscratch/users/ach22jc/anaconda/.envs/sa_env_fresh/bin/python
 export SLURM_EXPORT_ENV=ALL
