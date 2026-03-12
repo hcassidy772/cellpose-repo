@@ -37,7 +37,7 @@ tif = imread(gnome)
 # min_size = 12 # NUMBER OF VOXELS not diameter
 # cellprob_threshold = 5
 # flow_threshold = 0.1  # doesnt work for 3D
-flow3D_smooth = 2  # :thumb:
+flow3D_smooth = 2
 min_diam = 10  # not very useful, good for removing bg noise on larger images but doesnt affect mask quality
 
 # ========== other setup ==========
