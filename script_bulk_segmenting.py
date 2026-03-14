@@ -64,7 +64,7 @@ for i in tifs:
 
     tif = merge(tif)
 
-    mask = eval(tif, f3d=flow3D_smooth, min_diam=vol(min_diam))
+    mask = eval(tif, f3d=flow3D_smooth, min_diam=min_diam)
 
     # outstr = "/users/ach22jc/test-outputs/cp4/v2/" + (i.name[27:29]) + '-cellposed' + ".tif"
     outstr = "/users/ach22jc/test-outputs/cp4/atto/large/" + i.name
