@@ -10,7 +10,15 @@ from tifffile import imread
 import numpy as np
 import matplotlib as plt
 from csbdeep.utils import normalize
-from glob import glob
+from pathlib import Path
+import torch
+
+gpu_check = torch.cuda.is_available()
+
+if not gpu_check:
+    print("gpu not available")
+    print("ending")
+    raise Exception
 
 # -===- data prep -===-
 
@@ -18,11 +26,27 @@ from glob import glob
 raw_dir = "/users/ach22jc/sdr-in"
 mas_dir = "/users/ach22jc/sdm-in"
 
-X_paths = sorted(glob(raw_dir + "*.tif"))
-Y_paths = sorted(glob(mas_dir + "*.tif"))
+X_paths = sorted((Path(raw_dir).glob('*.tif')))
+Y_paths = sorted((Path(mas_dir).glob("*.tif")))
 
 X = map(imread, X_paths)
 Y = map(imread, Y_paths)
+
+if len(X) != len(Y):
+    print('diff number of tifs in raw/mask')
+    print('raw:')
+    print(len(X))
+    print('mask:')
+    print(len(Y))
+    print('ending')
+    raise Exception
+
+for i in range(len(X)):
+    x = X[i]
+    y = Y[i]
+    if x.shape != y.shape:
+        print('shape doesnt match')
+    if X_paths[i].name != Y_paths[i].name
 
 X = [x[3:-3] for x in X]
 Y = [y[2:-2] for y in Y]

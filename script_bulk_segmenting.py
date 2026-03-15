@@ -35,7 +35,7 @@ tifs = list(Path('/users/ach22jc/v2/v2/').glob('*.tif'))
 # cellprob_threshold = 5
 # flow_threshold = 0.1
 flow3D_smooth = 5
-min_diam = 15
+min_diam = 14
 # ========== cellpose setup ==========
 
 
