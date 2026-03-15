@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=a_L_bulk
+#SBATCH --job-name=v2_bulk
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1

@@ -23,7 +23,7 @@ model = models.CellposeModel(gpu=True)
 
 # gnome = Path("/users/ach22jc/hnt.tif/")
 
-tifs = list(Path('/users/ach22jc/atto/large').glob('*.tif'))
+tifs = list(Path('/users/ach22jc/v2/v2/').glob('*.tif'))
 # tifs = list(Path("/users/ach22jc/rf470/").glob("*.tif"))
 # rf470 = tifs + list(Path('/users/ach22jc/rf470/').glob('*.tif'))
 # shh = tifs + list(Path('/users/ach22jc/shh/').glob('*.tif'))
@@ -35,7 +35,7 @@ tifs = list(Path('/users/ach22jc/atto/large').glob('*.tif'))
 # cellprob_threshold = 5
 # flow_threshold = 0.1
 flow3D_smooth = 5
-min_diam = 20
+min_diam = 15
 # ========== cellpose setup ==========
 
 
@@ -67,7 +67,7 @@ for i in tifs:
     mask = eval(tif, f3d=flow3D_smooth, min_diam=min_diam)
 
     # outstr = "/users/ach22jc/test-outputs/cp4/v2/" + (i.name[27:29]) + '-cellposed' + ".tif"
-    outstr = "/users/ach22jc/test-outputs/cp4/atto/large/" + i.name
+    outstr = "/users/ach22jc/test-outputs/cp4/v2/" + i.name
     imwrite(outstr, mask)
 
 print("tada")
