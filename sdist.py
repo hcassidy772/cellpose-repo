@@ -93,7 +93,7 @@ conf = Config3D(
     rays=rays,
     grid=grid,
     anisotropy=anisotropy,
-    train_patch_size=(15, 480, 480),
+    train_patch_size=(12, 480, 480),
     train_batch_size=2,
     train_epochs=150,
 )
