@@ -1,11 +1,10 @@
 from stardist import (
-    StarDist3D,
-    Config3D,
     calculate_extents,
     Rays_GoldenSpiral,
     fill_label_holes,
     random_label_cmap,
 )
+from stardist.models import StarDist3D, Config3D
 from tifffile import imread
 import numpy as np
 import matplotlib as plt
@@ -26,7 +25,7 @@ if not gpu_check:
 raw_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-raw/"
 mas_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-mas/"
 
-X_paths = sorted((Path(raw_dir).glob('*.tif')))
+X_paths = sorted((Path(raw_dir).glob("*.tif")))
 Y_paths = sorted((Path(mas_dir).glob("*.tif")))
 
 X = [imread(x) for x in X_paths]
@@ -42,22 +41,22 @@ def merge_c(tif):
 X = [merge_c(x) for x in X]
 
 if len(X) != len(Y):
-    print('diff number of tifs in raw/mask')
-    print('raw:')
+    print("diff number of tifs in raw/mask")
+    print("raw:")
     print(len(X))
-    print('mask:')
+    print("mask:")
     print(len(Y))
-    print('ending')
+    print("ending")
     raise Exception
 
 for i in range(len(X)):
     x = X[i]
     y = Y[i]
     if x.shape != y.shape:
-        print('shape doesnt match')
+        print("shape doesnt match")
         raise Exception
     if X_paths[i].name != Y_paths[i].name:
-        print('name doesnt match')
+        print("name doesnt match")
         raise Exception
 
 X = [x[3:-3] for x in X]
