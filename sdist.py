@@ -52,6 +52,11 @@ if len(X) != len(Y):
 for i in range(len(X)):
     x = X[i]
     y = Y[i]
+    if x.ndim != y.ndim:
+        print('merge bad')
+        print(x.shape)
+        print(y.shape)
+        raise Exception
     if x.shape != y.shape:
         print("shape doesnt match")
         raise Exception
@@ -59,7 +64,7 @@ for i in range(len(X)):
         print("name doesnt match")
         raise Exception
 
-X = [x[3:-3] for x in X]
+X = [x[2:-2] for x in X]
 Y = [y[2:-2] for y in Y]
 
 rng = np.random.RandomState(42)
