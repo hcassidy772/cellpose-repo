@@ -23,14 +23,23 @@ if not gpu_check:
 # -===- data prep -===-
 
 
-raw_dir = "/users/ach22jc/sdr-in"
-mas_dir = "/users/ach22jc/sdm-in"
+raw_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-raw/"
+mas_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-mas/"
 
 X_paths = sorted((Path(raw_dir).glob('*.tif')))
 Y_paths = sorted((Path(mas_dir).glob("*.tif")))
 
-X = map(imread, X_paths)
-Y = map(imread, Y_paths)
+X = [imread(x) for x in X_paths]
+Y = [imread(y) for y in Y_paths]
+
+
+def merge_c(tif):
+    if tif.ndim == 4:
+        tif = np.max(tif, axis=1)
+    return tif
+
+
+X = [merge_c(x) for x in X]
 
 if len(X) != len(Y):
     print('diff number of tifs in raw/mask')
@@ -46,7 +55,10 @@ for i in range(len(X)):
     y = Y[i]
     if x.shape != y.shape:
         print('shape doesnt match')
-    if X_paths[i].name != Y_paths[i].name
+        raise Exception
+    if X_paths[i].name != Y_paths[i].name:
+        print('name doesnt match')
+        raise Exception
 
 X = [x[3:-3] for x in X]
 Y = [y[2:-2] for y in Y]
