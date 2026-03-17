@@ -10,14 +10,14 @@ import numpy as np
 import matplotlib as plt
 from csbdeep.utils import normalize
 from pathlib import Path
-import torch
+# import torch
 
-gpu_check = torch.cuda.is_available()
+# gpu_check = torch.cuda.is_available()
 
-if not gpu_check:
-    print("gpu not available")
-    print("ending")
-    raise Exception
+# if not gpu_check:
+#     print("gpu not available")
+#     print("ending")
+#     raise Exception
 
 # -===- data prep -===-
 
