@@ -12,7 +12,7 @@
 export py=/mnt/parscratch/users/ach22jc/anaconda/.envs/sa_env_fresh/bin/python
 export SLURM_EXPORT_ENV=ALL
 
-module load Anaconda3/2022.10
+# module load Anaconda3/2022.10
 module load OpenBLAS/0.3.23-GCC-12.3.0
 module load GCC/12.3.0
 module load CUDA/12.4.0
