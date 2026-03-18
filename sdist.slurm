@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #SBATCH --job-name=sdist_1
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
@@ -13,6 +12,7 @@
 
 export py=/mnt/parscratch/users/ach22jc/anaconda/.envs/sdist_env/bin/python
 export SLURM_EXPORT_ENV=ALL
+export XLA_FLAGS="--xla_gpu_cuda_data_dir=/opt/apps/testapps/el7-znver3/software/staging/CUDA/11.8.0/"
 
 # module load Anaconda3/2022.10
 module load OpenBLAS/0.3.23-GCC-12.3.0
@@ -21,7 +21,7 @@ module load CUDA/11.8.0
 # module load cuDNN/9.1.1.17-CUDA-12.4.0
 module load cuDNN/8.6.0.163-CUDA-11.8.0
 
-source activate sdist_env
+# source activate sdist_env
 
 nvidia-smi --query-gpu=index,timestamp,utilization.gpu,memory.total,memory.used,memory.free --format=csv -l 2 > gpu_stats_${SLURM_JOB_ID}.log &
 
