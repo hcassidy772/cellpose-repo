@@ -7,25 +7,22 @@ from stardist import (
 from stardist.models import StarDist3D, Config3D
 from tifffile import imread
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 from csbdeep.utils import normalize
 from pathlib import Path
 import tensorflow as tf
-# import torch
+import torch
 
-# Source - https://stackoverflow.com/a/65954299
-# Posted by Hafizain007, modified by community. See post 'Timeline' for change history
-# Retrieved 2026-03-18, License - CC BY-SA 4.0
 gpus = tf.config.experimental.list_physical_devices('GPU')
 tf.config.experimental.set_memory_growth(gpus[0], True)
 
 
-# gpu_check = torch.cuda.is_available()
+gpu_check = torch.cuda.is_available()
 
-# if not gpu_check:
-#     print("gpu not available")
-#     print("ending")
-#     raise Exception
+if not gpu_check:
+    print("gpu not available")
+    print("ending")
+    raise Exception
 
 # -===- data prep -===-
 
