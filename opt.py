@@ -15,12 +15,19 @@ true = sorted(list(Path(mas_dir).glob('*.tif')))
 # pred = sorted(list(Path('m-out/').glob('*.tif')))
 # pred = []
 
+ind = [0, 1, 30, 31, 56, 57, 76, 77]
+
 raw = [normalize(merge(imread(i))) for i in raw]
+raw_small = [raw[i] for i in ind]
+true_small = [imread(true[i]) for i in ind]
+
+print(raw_small)
+
 
 optimized_thresholds = model.optimize_thresholds(
-        raw, [imread(i) for i in true],
-        nms_threshs=[round(0.05 * x, 3) for x in range(1, 20)],
-        iou_threshs=[round(0.05 * x, 3) for x in range(1, 20)]
+        raw_small, true_small,
+        nms_threshs=[round(0.04 * x, 2) for x in range(5, 16)],
+        iou_threshs=[round(0.04 * x, 2) for x in range(5, 16)]
 )
 
 print(optimized_thresholds)
