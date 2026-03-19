@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#SBATCH --job-name=sdistopt
+#SBATCH --partition=gpu
+#SBATCH --qos=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --mail-user=hccassidy1@sheffield.ac.uk
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --output=sd_opt_job.out
+#SBATCH --mem=64G
+
+export py=/mnt/parscratch/users/ach22jc/anaconda/.envs/sdist_env/bin/python
+export SLURM_EXPORT_ENV=ALL
+
+module load OpenBLAS/0.3.23-GCC-12.3.0
+module load GCC/12.3.0 
+module load CUDA/11.8.0
+module load cuDNN/8.6.0.163-CUDA-11.8.0
+
+srun $py /users/ach22jc/cellpose-repo/opt.py

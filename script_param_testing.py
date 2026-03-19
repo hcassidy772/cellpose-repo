@@ -1,9 +1,9 @@
 from cellpose import models
 from pathlib import Path
-import numpy as np
 from tifffile import imread, imwrite
 import torch
 import logging
+from util import vol, merge
 
 check = torch.cuda.is_available()
 
@@ -43,10 +43,6 @@ min_diam = 10  # not very useful, good for removing bg noise on larger images bu
 # ========== other setup ==========
 
 
-def vol(diam):
-    return int((4 / 3) * (3.14) * ((diam / 2) ** 3))  # eq for sphere vol
-
-
 def eval(tif, model=model, f3d=0, min_diam=0):
     mask, two, three = model.eval(
         tif, do_3D=True, z_axis=0,
@@ -54,12 +50,6 @@ def eval(tif, model=model, f3d=0, min_diam=0):
         min_size=vol(min_diam)
     )
     return mask
-
-
-def merge(tif):
-    if tif.ndim == 4:
-        tif = np.max(tif, axis=1)
-    return tif
 
 # ========== for loop ==========
 

@@ -1,6 +1,6 @@
 from cellpose import models
 from pathlib import Path
-import numpy as np
+from util import vol, merge
 from tifffile import imread, imwrite
 import torch
 import logging
@@ -39,10 +39,6 @@ min_diam = 14
 # ========== cellpose setup ==========
 
 
-def vol(diam):
-    return int((4 / 3) * (3.14) * ((diam / 2) ** 3))  # eq for sphere vol
-
-
 def eval(tif, model=model, f3d=0, min_diam=0):
     mask, two, three = model.eval(
         tif, do_3D=True, z_axis=0,
@@ -50,13 +46,6 @@ def eval(tif, model=model, f3d=0, min_diam=0):
         min_size=vol(min_diam)
     )
     return mask
-
-
-def merge(tif):
-    if tif.ndim == 4:
-        tif = np.max(tif, axis=1)
-    return tif
-
 
 # ========== for loop ==========
 for i in tifs:

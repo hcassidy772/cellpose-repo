@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from csbdeep.utils import normalize
 from pathlib import Path
 import tensorflow as tf
+from util import merge
 import torch
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -36,14 +37,8 @@ Y_paths = sorted((Path(mas_dir).glob("*.tif")))
 X = [imread(x) for x in X_paths]
 Y = [imread(y) for y in Y_paths]
 
-
-def merge_c(tif):
-    if tif.ndim == 4:
-        tif = np.max(tif, axis=1)
-    return tif
-
-
-X = [merge_c(x) for x in X]
+X = [merge(x) for x in X]
+X = [normalize(i, 1, 99.8, axis=(0, 1, 2)) for i in X]
 
 if len(X) != len(Y):
     print("diff number of tifs in raw/mask")
@@ -145,7 +140,7 @@ def augmenter(x, y):
 
 history = model.train(X_trn, Y_trn, validation_data=(X_val, Y_val), augmenter=augmenter)
 
-# -===- eval -===-
+# -===- optimisation -===-
 masks = []
 for i in range(len(Y_val_path)):
     masks.append(imread(Y_val_path[i]))
@@ -176,3 +171,6 @@ ax.plot(history.history["dist_dist_iou_metric"], label="train dist iou")
 plt.legend()
 
 fig.savefig("loss.png", bbox_inches="tight")
+
+
+
