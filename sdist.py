@@ -72,7 +72,6 @@ ind = rng.permutation(len(X))
 n_val = max(1, int(round(0.15 * len(ind))))
 ind_train, ind_val = ind[:-n_val], ind[-n_val:]
 
-X = [normalize(x, 1, 99.8, axis=(0, 1, 2)) for x in X]
 Y = [fill_label_holes(y) for y in Y]
 
 X_val, Y_val = [X[i] for i in ind_val], [Y[i] for i in ind_val]
@@ -171,6 +170,3 @@ ax.plot(history.history["dist_dist_iou_metric"], label="train dist iou")
 plt.legend()
 
 fig.savefig("loss.png", bbox_inches="tight")
-
-
-

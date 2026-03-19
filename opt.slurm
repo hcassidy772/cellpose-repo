@@ -11,6 +11,7 @@
 
 export py=/mnt/parscratch/users/ach22jc/anaconda/.envs/sdist_env/bin/python
 export SLURM_EXPORT_ENV=ALL
+export XLA_FLAGS="--xla_gpu_cuda_data_dir=/opt/apps/testapps/el7-znver3/software/staging/CUDA/11.8.0/"
 
 module load OpenBLAS/0.3.23-GCC-12.3.0
 module load GCC/12.3.0 
