@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=sdist_2
+#SBATCH --job-name=sdist_3
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
