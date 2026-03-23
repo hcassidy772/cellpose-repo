@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=sdistopt
+#SBATCH --job-name=sdopt_s
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
