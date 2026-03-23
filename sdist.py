@@ -37,8 +37,17 @@ Y_paths = sorted((Path(mas_dir).glob("*.tif")))
 X = [imread(x) for x in X_paths]
 Y = [imread(y) for y in Y_paths]
 
-X = [merge(x) for x in X]
-X = [normalize(i, 1, 99.8, axis=(0, 1, 2)) for i in X]
+ind = []
+
+for i in range(len(X)):
+    if X[i].ndim==4:
+        ind.append(i)
+
+X = [X[i] for i in ind]
+Y = [Y[i] for i in ind]
+
+# X = [merge(x) for x in X]
+X = [normalize(i, 1, 99.8, axis=(0, 2, 3)) for i in X]
 
 if len(X) != len(Y):
     print("diff number of tifs in raw/mask")
@@ -99,10 +108,10 @@ conf = Config3D(
     anisotropy=anisotropy,
     train_patch_size=(12, 480, 480),
     train_batch_size=2,
-    train_epochs=150,
+    train_epochs=200,
 )
 
-model = StarDist3D(conf, name="model-3", basedir="models")
+model = StarDist3D(conf, name="model-4-m", basedir="models")
 
 
 # -===- training -===-
