@@ -26,7 +26,7 @@ for i in range(len(raw)):
 
 raw = [raw[i] for i in ind_]
 true = [true[i] for i in ind_]
-raw = [normalize(i, 1, 99.8, axis=0,2,3) for i in raw]
+raw = [normalize(i, 1, 99.8, axis=(0,2,3)) for i in raw]
 
 
 optimized_thresholds = model.optimize_thresholds(
