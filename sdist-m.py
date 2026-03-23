@@ -103,7 +103,7 @@ conf = Config3D(
     train_epochs=200,
 )
 
-model = StarDist3D(conf, name="model-5-s", basedir="models")
+model = StarDist3D(conf, name="model-4-m", basedir="models")
 
 
 # -===- training -===-
