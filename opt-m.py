@@ -5,7 +5,7 @@ from csbdeep.utils import normalize
 
 from util import merge
 
-model = StarDist3D(None, name='model-5-s', basedir='/users/ach22jc/models/')
+model = StarDist3D(None, name='model-4-m', basedir='/users/ach22jc/models/')
 
 raw_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-raw/"
 mas_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-mas/"
@@ -16,10 +16,17 @@ true = sorted(list(Path(mas_dir).glob('*.tif')))
 # pred = []
 
 ind = [0, 1, 30, 31, 56, 57, 76, 77]
-raw = [merge(imread(raw[i])) for i in ind]
+raw = [imread(raw[i]) for i in ind]
 true = [imread(true[i]) for i in ind]
 
-raw = [normalize(i, 1, 99.8, axis=(0,1,2)) for i in raw]
+ind_ = []
+for i in range(len(raw)):
+    if raw[i].ndim == 4:
+        ind_.append(i)
+
+raw = [raw[i] for i in ind_]
+true = [true[i] for i in ind_]
+raw = [normalize(i, 1, 99.8, axis=0,2,3) for i in raw]
 
 
 optimized_thresholds = model.optimize_thresholds(

@@ -171,4 +171,4 @@ ax.plot(history.history["val_loss"], label="validation")
 ax.plot(history.history["dist_dist_iou_metric"], label="train dist iou")
 plt.legend()
 
-fig.savefig("loss-"+str(mnum)".png", bbox_inches="tight")
+fig.savefig("loss-"+str(mnum)+".png", bbox_inches="tight")
