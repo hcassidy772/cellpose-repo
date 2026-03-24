@@ -14,7 +14,7 @@ import tensorflow as tf
 from util import merge
 import torch
 
-mnum = 5
+mnum = 6
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
 tf.config.experimental.set_memory_growth(gpus[0], True)
@@ -101,7 +101,7 @@ conf = Config3D(
     anisotropy=anisotropy,
     train_patch_size=(12, 480, 480),
     train_batch_size=2,
-    train_epochs=200,
+    train_epochs=100,
 )
 
 model = StarDist3D(conf, name="model-"+str(mnum)+"-s", basedir="models")
