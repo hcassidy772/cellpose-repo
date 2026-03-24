@@ -6,7 +6,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mail-user=hccassidy1@sheffield.ac.uk
 #SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --output=sd_opt_job.out
+#SBATCH --output=sd_opt_job_m.out
 #SBATCH --mem=32G
 
 export py=/mnt/parscratch/users/ach22jc/anaconda/.envs/sdist_env/bin/python
