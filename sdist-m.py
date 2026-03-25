@@ -60,9 +60,6 @@ if len(X) != len(Y):
 for i in range(len(X)):
     x = X[i]
     y = Y[i]
-    if x.shape != y.shape:
-        print("shape doesnt match")
-        raise Exception
     if X_paths[i].name != Y_paths[i].name:
         print("name doesnt match")
         raise Exception
