@@ -5,7 +5,7 @@ from csbdeep.utils import normalize
 
 from util import merge
 
-model = StarDist3D(None, name='model-5-s', basedir='/users/ach22jc/models/')
+model = StarDist3D(None, name='model-6-s', basedir='/users/ach22jc/models/')
 
 raw_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-raw/"
 mas_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-mas/"
