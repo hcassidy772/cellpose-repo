@@ -5,7 +5,7 @@ from csbdeep.utils import normalize
 
 from util import merge
 
-model = StarDist3D(None, name='model-6-s', basedir='/users/ach22jc/models/')
+model = StarDist3D(None, name='model-2', basedir='/users/ach22jc/models/')
 
 raw_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-raw/"
 mas_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-mas/"
@@ -24,7 +24,7 @@ raw = [normalize(i, 1, 99.8, axis=(0,1,2)) for i in raw]
 
 optimized_thresholds = model.optimize_thresholds(
         raw, true,
-        nms_threshs=[round(0.04 * x, 2) for x in range(5, 16)],
+        nms_threshs=[round(0.04 * x, 2) for x in range(10)],
         iou_threshs=[round(0.04 * x, 2) for x in range(5, 16)]
 )
 
