@@ -15,7 +15,7 @@ import torch
 
 mnum = 4
 
-gpus = tf.config.experimental.list_physical_devices('GPU')
+gpus = tf.config.experimental.list_physical_devices("GPU")
 tf.config.experimental.set_memory_growth(gpus[0], True)
 
 
@@ -40,7 +40,7 @@ Y = [imread(y) for y in Y_paths]
 
 ind = []
 for i in range(len(X)):
-    if X[i].ndim==4:
+    if X[i].ndim == 4:
         ind.append(i)
 
 X = [X[i] for i in ind]
@@ -102,7 +102,7 @@ conf = Config3D(
     train_epochs=200,
 )
 
-model = StarDist3D(conf, name="model-"+str(mnum)+"-m", basedir="models")
+model = StarDist3D(conf, name="model-" + str(mnum) + "-m", basedir="models")
 
 
 # -===- training -===-
@@ -161,7 +161,7 @@ for i in range(3):
     ax[i, 2].imshow(masks[i][8, :, :], cmap=lbl_cmap)
     ax[i, 2].set_title(f"Input Mask {i + 1}")
 
-fig.savefig("stardist_predictions-"+str(mnum)+".png", bbox_inches="tight")
+fig.savefig("stardist_predictions-" + str(mnum) + ".png", bbox_inches="tight")
 
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.plot(history.history["loss"], label="train")
@@ -169,4 +169,4 @@ ax.plot(history.history["val_loss"], label="validation")
 ax.plot(history.history["dist_dist_iou_metric"], label="train dist iou")
 plt.legend()
 
-fig.savefig("loss-"+str(mnum)+".png", bbox_inches="tight")
+fig.savefig("loss-" + str(mnum) + ".png", bbox_inches="tight")

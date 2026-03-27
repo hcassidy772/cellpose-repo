@@ -13,4 +13,3 @@ def check_sim(t1, t2):
 
 def vol(diam):
     return int((4 / 3) * (3.14) * ((diam / 2) ** 3))  # eq for sphere vol
-

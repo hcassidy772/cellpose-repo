@@ -3,15 +3,13 @@ from tifffile import imread
 from stardist.models import StarDist3D
 from csbdeep.utils import normalize
 
-from util import merge
-
-model = StarDist3D(None, name='model-4-m', basedir='/users/ach22jc/models/')
+model = StarDist3D(None, name="model-4-m", basedir="/users/ach22jc/models/")
 
 raw_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-raw/"
 mas_dir = "/mnt/parscratch/users/ach22jc/tifs/sdist-mas/"
 
-raw = sorted(list(Path(raw_dir).glob('*.tif')))
-true = sorted(list(Path(mas_dir).glob('*.tif')))
+raw = sorted(list(Path(raw_dir).glob("*.tif")))
+true = sorted(list(Path(mas_dir).glob("*.tif")))
 # pred = sorted(list(Path('m-out/').glob('*.tif')))
 # pred = []
 
@@ -26,14 +24,15 @@ for i in range(len(raw)):
 
 raw = [raw[i] for i in ind_]
 true = [true[i] for i in ind_]
-raw = [normalize(i, 1, 99.8, axis=(0,2,3)) for i in raw]
+raw = [normalize(i, 1, 99.8, axis=(0, 2, 3)) for i in raw]
 
 
 optimized_thresholds = model.optimize_thresholds(
-        raw, true,
-        nms_threshs=[round(0.04 * x, 2) for x in range(5, 16)],
-        iou_threshs=[round(0.04 * x, 2) for x in range(5, 16)]
+    raw,
+    true,
+    nms_threshs=[round(0.04 * x, 2) for x in range(5, 16)],
+    iou_threshs=[round(0.04 * x, 2) for x in range(5, 16)],
 )
 
 print(optimized_thresholds)
-print('tada')
+print("tada")
